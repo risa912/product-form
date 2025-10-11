@@ -1,13 +1,19 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/products.css')}}" />
+<link rel="stylesheet" href="{{ asset('css/product.css')}}" />
 @endsection
 
 @section('content')
     <aside class="search-form__inner">
-        <form action="/products/search" method="get">
-            <h2 class="search-form__heading content__heading">商品一覧</h2>
+        <form class="search" action="/products/search" method="get">
+            <h2 class="search-form__heading content__heading">
+                @if(request('keyword') && !request('sort'))
+                    "{{ request('keyword') }}"の商品一覧
+                @else
+                    商品一覧
+                @endif
+            </h2>
             <input class="search-form__input"
                    type="text"
                    name="keyword"
@@ -23,7 +29,7 @@
                     <option class="search-form__option search-form__option--price" value="desc" @if(request('sort') === 'desc') selected @endif>高い順</option>
                 </select>
             </div>
-            {{-- ソートタグ --}}
+
             @if(request('sort'))
             <div class="tag">
                 <p class="tag__text">

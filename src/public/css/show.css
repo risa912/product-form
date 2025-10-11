@@ -1,0 +1,131 @@
+.detail-form {
+    background-color: #fff;
+    padding: 48px 64px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* 商品画像 */
+.detail-form__group:first-of-type {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.detail-form__group:first-of-type img {
+    width: 320px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* ラベル・入力の整列 */
+.detail-form__group {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+/* テキスト入力 */
+.detail-form__input,
+.detail-form__textarea {
+    background-color: #fff;
+    color: #4B4B4B;
+    border: 1px solid #E0DFDE;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* テキストエリア */
+.detail-form__textarea {
+    height: 140px;
+    resize: none;
+}
+
+/* 季節ボタン */
+.detail-form__season-inputs {
+    display: flex;
+    gap: 30px;
+}
+
+.detail-form__season-text {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.detail-form__season-text::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #4B4B4B;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.detail-form__season-input:checked+.detail-form__season-text::before {
+    background-color: #4B4B4B;
+}
+
+/* ファイル選択 */
+.detail-form__file-label {
+    background-color: #E0DFDE;
+    color: #4B4B4B;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.detail-form__file-label:hover {
+    background-color: #d0d0d0;
+}
+
+/* ボタン */
+.detail-form__btn-inner {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.detail-form__back-btn {
+    background-color: #E0DFDE;
+    color: #4B4B4B;
+    border: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.detail-form__back-btn:hover {
+    background-color: #d0d0d0;
+}
+
+.detail-form__send-btn {
+    background-color: #f9c900;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.detail-form__send-btn:hover {
+    background-color: #e6b800;
+}
+
+/* 削除ボタン（ゴミ箱アイコン対応） */
+.detail-form__delete-btn {
+    background-color: transparent;
+    border: none;
+    color: #FD0707;
+    font-size: 22px;
+    cursor: pointer;
+}

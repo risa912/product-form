@@ -34,11 +34,8 @@
             <div class="register-form__group">
                 <label class="register-form__label" for="image">商品画像<span class="register-form__required">必須</span></label>
                 <div class="register-form__file">
-                    <label class="register-form__file-label" for="image">ファイルを選択</label>
-                    <input class="register-form__image-input" type="file" id="image" name="image" accept="image/*">
-                </div>
-                <div class="register-form__preview">
-                    <img id="image-preview" src="" alt="プレビュー" class="register-form__preview-img">
+                    <label class="register-form__file-label">ファイルを選択</label>
+                    <input class="register-form__image-input" type="file" name="image" accept="image/*">
                 </div>
                 <p class="register-form__error-message">
                     @error('image')
@@ -77,14 +74,10 @@
             </div>
 
             <div class="register-form__btn-inner">
-                <a href="/products" class="register-form__back-btn btn">戻る</a>
+                <input class="register-form__back-btn btn" type="submit" value="戻る" name="back">
                 <input class="register-form__send-btn btn" type="submit" value="登録" name="register">
             </div>
         </form>
     </div>
 </div>
-@endsection
-
-@section('js')
-<script src="{{ asset('js/product-preview.js') }}"></script>
 @endsection

@@ -68,37 +68,46 @@
 }
 
 .register-form__season-option {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    /* 並べる間隔 */
     position: relative;
 }
 
 .register-form__season-input {
     position: absolute;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    opacity: 0;
+    /* 完全に非表示にして見た目は label::before で作る */
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 
 .register-form__season-text {
     display: flex;
     align-items: center;
-    position: relative;
     cursor: pointer;
+    position: relative;
+    padding-left: 32px;
+    /* 丸の分だけ余白 */
 }
 
 .register-form__season-text::before {
-    display: block;
-    margin-right: 8px;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 24px;
     height: 24px;
     border: 1px solid #4B4B4B;
     border-radius: 50%;
-    /* 丸 */
-    content: '';
+    background: #fff;
 }
 
 .register-form__season-input:checked+.register-form__season-text::before {
     background-color: #4B4B4B;
-    /* 選択時の丸の色 */
 }
 
 .register-form__season-input:checked+.register-form__season-text::after {
@@ -109,7 +118,6 @@
     width: 8px;
     height: 14px;
     border-right: 3px solid #fff;
-    /* 白色チェックマーク */
     border-bottom: 3px solid #fff;
     transform: translateY(-60%) rotate(45deg);
 }
@@ -127,6 +135,15 @@
     padding: 5px;
     color: #FD0707;
     margin-top: 8px;
+}
+
+.register-form__required {
+    display: inline-block;
+    padding: 5px;
+    font-size: 12px;
+    background: #FD0707;
+    color: #FFFFFF;
+    margin-left: 20px;
 }
 
 .register-form__required--season::after {

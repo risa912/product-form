@@ -7,6 +7,11 @@
     margin-right: 20px;
 }
 
+.search{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #E0DFDE;
+}
+
 .search-form__input {
     width: 100%;
     padding: 8px 15px;
@@ -56,7 +61,6 @@
 .search-form__select {
     width: 100%;
     padding: 8px;
-    color: #E0DFDE;
     border-radius: 5px;
     border: 1px solid #E0DFDE;
     margin-top: 20px;
@@ -74,7 +78,6 @@
     border-radius: 21px;
     margin-top: 20px;
 }
-
 
 .tag__text {
     margin: 0;
