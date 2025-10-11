@@ -1,0 +1,100 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    color: #4B4B4B;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* ヘッダー */
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #f9a825;
+}
+
+.header__heading {
+    font-weight: lighter;
+    font-size: 32px;
+
+    grid-column: 2;
+}
+
+/* コンテンツ */
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 48px;
+    background-color: #F8F8F8;
+}
+
+.header__heading {
+    font-size: 30px;
+    font-weight: 500;
+    color: #F5C800;
+    grid-column: 2;
+}
+
+.content__heading {
+    color: #333333;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 480px) {
+    .content__heading {
+        font-size: 24px;
+    }
+}
+
+/* ボタン */
+.btn {
+    display: block;
+    padding: 8px 32px;
+    border: none;
+    background-color: #F5C800;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ページネーション */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-decoration: none;
+    color: #4B4B4B;
+}
+
+/* アクティブページのデザイン */
+.page-item.active .page-link {
+    background-color: #F5C800;
+    color: #FFFFFF;
+}
