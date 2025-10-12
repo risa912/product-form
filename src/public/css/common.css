@@ -70,6 +70,23 @@ body {
     cursor: pointer;
 }
 
+.register-form__back-btn,
+.detail-form__back-btn{
+    display: inline-block;
+    background-color: #E0DFDE;
+    color: #4B4B4B;
+    text-decoration: none;
+    text-align: center;
+    line-height: 28px;
+}
+
+.register-form__error-message,
+.detail-form__error-message {
+    padding: 5px;
+    color: #FD0707;
+    margin-top: 8px;
+}
+
 /* ページネーション */
 .pagination {
     display: flex;

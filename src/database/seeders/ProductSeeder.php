@@ -41,7 +41,7 @@ class ProductSeeder extends Seeder
         $param = [
             'name' => 'スイカ',
             'price' => 700,
-            'image' => 'strawberry.png',
+            'image' => 'watermelon.png',
             'description' => '甘くてシャリシャリ食感が魅力のスイカ。全体の90％が水分のため、暑い日の水分補給や熱中症予防、カロリーが気になる方にもおすすめの商品です。もぎたてフルーツのスムージーをお召し上がりください！',
             ];
             DB::table('products')->insert($param);

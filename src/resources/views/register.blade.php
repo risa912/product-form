@@ -34,8 +34,8 @@
             <div class="register-form__group">
                 <label class="register-form__label" for="image">商品画像<span class="register-form__required">必須</span></label>
                 <div class="register-form__file">
-                    <label class="register-form__file-label">ファイルを選択</label>
-                    <input class="register-form__image-input" type="file" name="image" accept="image/*">
+                    <label class="register-form__file-label" for="image">ファイルを選択</label>
+                    <input class="register-form__image-input" type="file" name="image" id="image" accept="image/*">
                 </div>
                 <p class="register-form__error-message">
                     @error('image')
@@ -49,8 +49,12 @@
                 <div class="register-form__season-inputs">
                     @foreach(['spring' => '春', 'summer' => '夏', 'autumn' => '秋', 'winter' => '冬'] as $value => $label)
                         <div class="register-form__season-option">
-                            <label class="register-form__gender-label">
-                                <input class="register-form__season-input" type="radio" name="season" value="{{ $value }}" {{ old('season') === $value ? 'checked' : '' }}>
+                            <label class="register-form__season-label">
+                                <input class="register-form__season-input" 
+                                type="checkbox" 
+                                name="season[]" 
+                                value="{{ $value }}"
+                                {{ is_array(old('season')) && in_array($value, old('season')) ? 'checked' : '' }}>
                                 <span class="register-form__season-text">{{ $label }}</span>
                             </label>
                         </div>
@@ -74,7 +78,7 @@
             </div>
 
             <div class="register-form__btn-inner">
-                <input class="register-form__back-btn btn" type="submit" value="戻る" name="back">
+                <a href="{{ url('/products') }}" class="register-form__back-btn btn">戻る</a>
                 <input class="register-form__send-btn btn" type="submit" value="登録" name="register">
             </div>
         </form>

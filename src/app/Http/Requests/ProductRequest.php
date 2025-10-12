@@ -26,8 +26,7 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|string',
             'price' => 'required|integer|min:0|max:10000',
-            'season' => 'required|array',
-            'season.*' => 'in:spring,summer,autumn,winter',
+            'season' => 'required',
             'description' => 'required|string|max:120',
             'image' => 'required|image|mimes:png,jpeg',
         ];

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
-use App\Models\Product; 
+use App\Models\Product;
+use App\Models\Season;
 
 
 class ProductController extends Controller
 {
-
+    // 一覧表示
     public function index()
     {
     $products = Product::paginate(6);
@@ -17,6 +18,7 @@ class ProductController extends Controller
     return view('product', compact('products'));
     }
 
+    // 検索
     public function search(Request $request)
     {
         $query = Product::query();
@@ -28,6 +30,7 @@ class ProductController extends Controller
         return view('product', compact('products'));
     }
     
+    // 検索条件
     private function getSearchQuery(Request $request, $query)
     {
         if ($request->filled('keyword')) {
@@ -51,72 +54,49 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         if ($request->has('back')) {
-        return redirect('/products')->withInput();
-        }
+        return redirect('/products');
+    }
 
         $imagePath = $request->file('image')->store('fruits-img', 'public');
 
-         $product = Product::create([
+        $product = Product::create([
         'name' => $request->name,
         'price' => $request->price,
         'image' => $imagePath,
         'description' => $request->description,
          ]);
 
-         dd($request->season_ids);
-        if ($request->filled('season_id')) {
-        $product->seasons()->sync($request->season_ids);
-        }
+        $seasonIds = Season::whereIn('name', (array) $request->season)->pluck('id')->toArray();
+        $product->seasons()->sync($seasonIds);
 
-        // 商品一覧へリダイレクト（メッセージなし）
-        return redirect('/product');
+        return redirect('/products');
     }
 
-    public function show(ProductRequest $request)
+    // 詳細表示
+    public function show($id)
     {
-        if ($request->has('back')) {
-        return redirect('/products')->withInput();
-        }
+    // ID で商品を取得。存在しなければ404
+    $product = Product::with('seasons')->findOrFail($id);
 
-        $imagePath = $request->file('image')->store('fruits-img', 'public');
-
-         $product = Product::create([
-        'name' => $request->name,
-        'price' => $request->price,
-        'image' => $imagePath,
-        'description' => $request->description,
-         ]);
-
-         dd($request->season_ids);
-        if ($request->filled('season_id')) {
-        $product->seasons()->sync($request->season_ids);
-        }
-
-        // 商品一覧へリダイレクト（メッセージなし）
-        return redirect('/product');
+    // show.blade に $product を渡す
+    return view('show', compact('product'));
     }
 
-    public function update(ProductRequest $request)
+    public function update(ProductRequest $request, Product $product)
     {
-        if ($request->has('back')) {
-        return redirect('/products')->withInput();
-        }
-
-        $imagePath = $request->file('image')->store('fruits-img', 'public');
-
-         $product = Product::create([
+    $product->update([
         'name' => $request->name,
         'price' => $request->price,
-        'image' => $imagePath,
         'description' => $request->description,
-         ]);
+        // 画像も更新する場合は処理を追加
+    ]);
 
-         dd($request->season_ids);
-        if ($request->filled('season_id')) {
-        $product->seasons()->sync($request->season_ids);
-        }
+    $seasonIds = Season::whereIn('name', (array) $request->season)->pluck('id')->toArray();
+    $product->seasons()->sync($seasonIds);
 
-        // 商品一覧へリダイレクト（メッセージなし）
-        return redirect('/product');
+    return redirect('/products');
     }
+
+
+
 }
