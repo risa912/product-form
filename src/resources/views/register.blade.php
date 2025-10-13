@@ -8,7 +8,7 @@
 <div class="register-form">
     <h2 class="register-form__heading content__heading">商品登録</h2>
     <div class="register-form__inner">
-        <form action="/products/register" method="post" enctype="multipart/form-data">
+        <form action="{{ route('products.register') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="register-form__group">
@@ -36,6 +36,7 @@
                 <div class="register-form__file">
                     <label class="register-form__file-label" for="image">ファイルを選択</label>
                     <input class="register-form__image-input" type="file" name="image" id="image" accept="image/*">
+                    <div id="image-preview" class="detail-form__preview"></div>
                 </div>
                 <p class="register-form__error-message">
                     @error('image')
@@ -78,7 +79,7 @@
             </div>
 
             <div class="register-form__btn-inner">
-                <a href="{{ url('/products') }}" class="register-form__back-btn btn">戻る</a>
+                <a href="{{ route('products.index')}}"class="register-form__back-btn btn">戻る</a>
                 <input class="register-form__send-btn btn" type="submit" value="登録" name="register">
             </div>
         </form>

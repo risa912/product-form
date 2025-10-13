@@ -54,11 +54,13 @@
     margin-top: 10px;
 }
 
-.register-form__preview-img {
-    width: 150px;
-    height: 150px;
+.detail-form__preview-img {
+    width: 350px;
+    height: auto;
+    border-radius: 12px;
     object-fit: cover;
-    margin-top: 10px;
+    display: block;
+    margin-top: 16px;
 }
 
 .register-form__season-inputs {

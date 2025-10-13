@@ -20,15 +20,6 @@
     align-items: center;
 }
 
-/* 画像側 */
-.detail-form__image {
-    width: 350px;
-    height: auto;
-    border-radius: 12px;
-    object-fit: cover;
-    
-}
-
 /* フォーム */
 .detail-form__group {
     align-items: center;
@@ -76,6 +67,17 @@
     justify-content: space-between;
 }
 
+.detail-form__imageBox {
+    width: 350px;
+}
+
+.detail-form__image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+
+}
 .detail-form__season-option {
     position: relative;
 }
@@ -106,11 +108,11 @@
     content: '';
 }
 
-.detail-form__season-input:checked+.register-form__season-text::before {
+.detail-form__season-input:checked+.detail-form__season-text::before {
     background-color: #4B4B4B;
 }
 
-.detail-form__season-input:checked+.register-form__season-text::after {
+.detail-form__season-input:checked+.detail-form__season-text::after {
     content: "";
     position: absolute;
     top: 50%;

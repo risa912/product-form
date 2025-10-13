@@ -6,7 +6,7 @@
 
 @section('content')
     <aside class="search-form__inner">
-        <form class="search" action="/products/search" method="get">
+        <form class="search" action="{{ route('products.search') }}"method="get">
             <h2 class="search-form__heading content__heading">
                 @if(request('keyword') && !request('sort'))
                     "{{ request('keyword') }}"の商品一覧

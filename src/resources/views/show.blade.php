@@ -7,17 +7,17 @@
 @section('content')
 <div class="detail-form">
     <div class="detail-form__breadcrumb">
-        <a class="detail-form__breadcrumb-text" href="{{ url('/products') }}">商品一覧</a> > {{ $product->name }}
+        <a class="detail-form__breadcrumb-text" href="{{ route('products.index') }}">商品一覧</a> > {{ $product->name }}
     </div>
     <div class="detail-form__inner">
-        <form class="register" action="" method="">
+        <form class="register" action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
             <div class="detail-form__group detail-form__group--horizontal">
                 <div class="detail-form__group">
                     <label class="detail-form__label" for="image"></label>
-                        <div class="detail-form__season-option">
+                        <div class="detail-form__imageBox">
                             <img class="detail-form__image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-                            <label class="detail-form__file-label">ファイルを選択</label>
-                            <input class="detail-form__image-input" type="file" name="image" accept="image/*">
+                            <label class="detail-form__file-label" for="image">ファイルを選択</label>
+                             <input class="detail-form__image-input" type="file" id="image" name="image" accept="image/*">
                         </div>
                         <p class="detail-form__error-message">
                             @error('description')
@@ -84,7 +84,7 @@
                 </p>
             </div>
             <div class="detail-form__btn-inner">
-                 <a href="{{ url('/products') }}" class="detail-form__back-btn btn">戻る</a>
+                 <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
                 <input class="detail-form__send-btn btn" type="submit" value="変更を保存" name="register">
             </div>
         </form>    
