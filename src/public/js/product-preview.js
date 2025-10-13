@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const imageInput = document.getElementById('image');
-    const previewDiv = document.getElementById('image-preview'); // class は JS には影響なし
+    const previewDiv = document.getElementById('image-preview'); 
 
     imageInput.addEventListener('change', event => { 
         const file = event.target.files[0]; 

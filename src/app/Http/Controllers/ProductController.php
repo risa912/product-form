@@ -75,25 +75,26 @@ class ProductController extends Controller
     // 詳細表示
     public function show($id)
     {
-    // ID で商品を取得。存在しなければ404
-    $product = Product::with('seasons')->findOrFail($id);
-    $seasons = Season::all(); 
+        // ID で商品を取得。存在しなければ404
+        $product = Product::with('seasons')->findOrFail($id);
+        
+        $seasons = Season::all(); 
     
-    // show.blade に $product を渡す
-     return view('show', compact('product', 'seasons'));
+        // show.blade に $product を渡す
+        return view('show', compact('product', 'seasons'));
     }
 
     public function update(ProductRequest $request, Product $product)
     {
-    $product->update([
+        $product->update([
         'name' => $request->name,
         'price' => $request->price,
         'description' => $request->description,
         // 画像も更新する場合は処理を追加
     ]);
 
-    $seasons = Season::all();
-    return view('show', compact('product', 'seasons'));;
+        $seasons = Season::all();
+        return view('show', compact('product', 'seasons'));;
     }
 
 

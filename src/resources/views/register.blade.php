@@ -36,7 +36,7 @@
                 <div class="register-form__file">
                     <label class="register-form__file-label" for="image">ファイルを選択</label>
                     <input class="register-form__image-input" type="file" name="image" id="image" accept="image/*">
-                    <div id="image-preview" class="detail-form__preview"></div>
+                    <div id="image-preview" class="register-form__preview"></div>
                 </div>
                 <p class="register-form__error-message">
                     @error('image')
