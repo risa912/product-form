@@ -49,7 +49,7 @@ php artisan db:seed
 - MySQL8.0.26
 
 ## ER図
-![alt](erd.png)
+![alt](product.png)
 
 ## URL
 - 開発環境：http://localhost/products

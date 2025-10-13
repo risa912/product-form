@@ -34,9 +34,9 @@
             <div class="register-form__group">
                 <label class="register-form__label" for="image">商品画像<span class="register-form__required">必須</span></label>
                 <div class="register-form__file">
-                    <label class="register-form__file-label" for="image">ファイルを選択</label>
-                    <input class="register-form__image-input" type="file" name="image" id="image" accept="image/*">
+                    <label class="register-form__file-label" for="image"></label>
                     <div id="image-preview" class="register-form__preview"></div>
+                    <input class="register-form__image-input" type="file" name="image" id="image" accept="image/*">
                 </div>
                 <p class="register-form__error-message">
                     @error('image')
@@ -54,8 +54,8 @@
                                 <input class="register-form__season-input" 
                                 type="checkbox" 
                                 name="season[]" 
-                                value="{{ $season->name }}"
-                                {{ is_array(old('season')) && in_array($value, old('season')) ? 'checked' : '' }}>
+                                value="{{ $season->id}}"
+                                {{ in_array($season->id, old('season', [])) ? 'checked' : '' }}>
                                 <span class="register-form__season-text">{{ $season->name }}</span>
                             </label>
                         </div>
@@ -85,4 +85,8 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/product-preview.js') }}"></script>
 @endsection

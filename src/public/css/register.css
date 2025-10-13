@@ -32,7 +32,7 @@
 }
 
 .register-form__image-input {
-    display: none;
+    margin-top: 20px;
 }
 
 .register-form__file-label {
@@ -40,16 +40,6 @@
 }
 
 /* カスタムの見た目 */
-.register-form__file-label {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #E0DFDE;
-    border: 1px solid #4B4B4B;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: 25px;
-}
-
 .register-form__preview {
     margin-top: 10px;
 }

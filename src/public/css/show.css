@@ -18,18 +18,12 @@
     display: flex;
     gap: 50px;
     align-items: center;
+    margin-top: 40px;
 }
 
 /* フォーム */
 .detail-form__group {
-    align-items: center;
-    margin-top: 32px;
-
-    grid-template-columns: 1fr 2fr;
-}
-
-.detail-form__group:first-of-type {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .detail-form__label {
@@ -41,21 +35,13 @@
     background-color: #FFFFFF;
     border: 1px solid #E0DFDE;
     border-radius: 5px;
+    width: 100%;
 }
 
 .detail-form__image-input {
-    display: none;
+    margin-top: 10px;
 }
 
-/* カスタムの見た目 */
-.detail-form__file-label {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #E0DFDE;
-    border: 1px solid #4B4B4B;
-    cursor: pointer;
-    transition: background 0.3s;
-}
 
 .detail-form__input,
 .detail-form__season-inputs {
@@ -68,7 +54,7 @@
 }
 
 .detail-form__imageBox {
-    width: 350px;
+    width: 80%;
 }
 
 .detail-form__image {

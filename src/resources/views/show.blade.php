@@ -10,20 +10,21 @@
         <a class="detail-form__breadcrumb-text" href="{{ route('products.index') }}">商品一覧</a> > {{ $product->name }}
     </div>
     <div class="detail-form__inner">
-        <form class="register" action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+        <form class="register" action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="detail-form__group detail-form__group--horizontal">
                 <div class="detail-form__group">
-                    <label class="detail-form__label" for="image"></label>
-                        <div class="detail-form__imageBox">
-                            <img class="detail-form__image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-                            <label class="detail-form__file-label" for="image">ファイルを選択</label>
-                             <input class="detail-form__image-input" type="file" id="image" name="image" accept="image/*">
-                        </div>
-                        <p class="detail-form__error-message">
-                            @error('description')
-                                {{ $message }}
-                            @enderror
-                        </p>
+                    <div class="detail-form__imageBox">
+                        <img class="detail-form__image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                        <div id="image-preview" class="register-form__preview"></div>
+                        <label class="detail-form__file-label" for="image"></label>
+                        <input class="detail-form__image-input" type="file" id="image" name="image" accept="image/*">
+                    </div>
+                    <p class="detail-form__error-message">
+                        @error('description')
+                            {{ $message }}
+                        @enderror
+                    </p>
                 </div>
 
                 <div class="detail-form__info">
@@ -84,10 +85,25 @@
                 </p>
             </div>
             <div class="detail-form__btn-inner">
-                 <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
-                <input class="detail-form__send-btn btn" type="submit" value="変更を保存" name="register">
+                <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
+                <form action="{{ route('products.update', $product->id) }}" method="POST"      enctype="multipart/form-data" style="display:inline;">
+                    @csrf
+                    <input class="detail-form__send-btn btn" type="submit" value="変更を保存" name="register">
+                </form>
+                
+                <form action="{{ route('products.destroy', ['productId' => $product->id]) }}"       method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="detail-form__delete-btn">
+                        <img class="detail-form__icon" src="{{ asset('images/trash-icon.png') }}" alt="削除">
+                    </button>
+                </form>
             </div>
         </form>    
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/product-preview.js') }}"></script>
 @endsection
