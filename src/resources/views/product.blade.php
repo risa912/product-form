@@ -54,8 +54,8 @@
 
         <div class="product-list">
             @foreach($products as $product)
-                <a href="{{ url('/products/' . $product->id) }}" class="product-list__card">
-                     <img class="product-list__img" src="{{ asset('storage/fruits-img/' . $product->image) }}" alt="{{ $product->name }}">
+                <a href="{{ route('products.show', $product->id) }}" class="product-list__card">
+                     <img class="product-list__img" src="{{ Storage::url(  $product->image) }}" alt="{{ $product->name }}">
                     <div class="product-list__textBox">
                         <p class="product-list__text">{{ $product->name }}</p>
                         <p class="product-list__text">¥{{ number_format($product->price) }}</p>

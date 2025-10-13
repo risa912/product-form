@@ -47,8 +47,8 @@ class ProductController extends Controller
 
     public function create()
     {
-
-    return view('register'); 
+        $seasons = Season::all();
+        return view('register', compact('seasons')); 
     }
 
     public function store(ProductRequest $request)
@@ -65,10 +65,10 @@ class ProductController extends Controller
         'image' => $imagePath,
         'description' => $request->description,
          ]);
-
-        $seasonIds = Season::whereIn('name', (array) $request->season)->pluck('id')->toArray();
-        $product->seasons()->sync($seasonIds);
-
+        
+        if ($request->has('season')) {
+            $product->seasons()->sync($request->season);
+        }
         return redirect('/products');
     }
 
@@ -77,9 +77,10 @@ class ProductController extends Controller
     {
     // ID で商品を取得。存在しなければ404
     $product = Product::with('seasons')->findOrFail($id);
-
+    $seasons = Season::all(); 
+    
     // show.blade に $product を渡す
-    return view('show', compact('product'));
+     return view('show', compact('product', 'seasons'));
     }
 
     public function update(ProductRequest $request, Product $product)
@@ -91,10 +92,8 @@ class ProductController extends Controller
         // 画像も更新する場合は処理を追加
     ]);
 
-    $seasonIds = Season::whereIn('name', (array) $request->season)->pluck('id')->toArray();
-    $product->seasons()->sync($seasonIds);
-
-    return redirect('/products');
+    $seasons = Season::all();
+    return view('show', compact('product', 'seasons'));;
     }
 
 

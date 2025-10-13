@@ -5,42 +5,32 @@
 }
 
 .detail-form__inner {
+    display: flex;
     gap: 30px;
 }
 
+.detail-form__breadcrumb-text {
+    text-decoration: none;
+    color: #0085FF;
+}
 
-/* 横並びにする親 */
 .detail-form__group--horizontal {
     display: flex;
-    align-items: flex-start;
-    /* 上揃え */
-    gap: 40px;
-    /* 画像と情報の間隔 */
+    gap: 50px;
+    align-items: center;
 }
 
 /* 画像側 */
-.detail-form__image-wrapper img {
-    width: 320px;
+.detail-form__image {
+    width: 350px;
     height: auto;
     border-radius: 12px;
     object-fit: cover;
-}
-
-/* 右側の情報 */
-.detail-form__info {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    /* 各入力欄の間隔 */
-}
-
-.detail-form__info .detail-form__input {
-    width: 100%;
+    
 }
 
 /* フォーム */
 .detail-form__group {
-    display: grid;
     align-items: center;
     margin-top: 32px;
 
@@ -74,6 +64,11 @@
     border: 1px solid #4B4B4B;
     cursor: pointer;
     transition: background 0.3s;
+}
+
+.detail-form__input,
+.detail-form__season-inputs {
+    margin-top: 10px;
 }
 
 .detail-form__season-inputs {
@@ -134,6 +129,7 @@
     border: 1px solid #E0DFDE;
     border-radius: 5px;
     margin-top: 25px;
+    width: 100%;
 }
 
 .detail-form__required {
