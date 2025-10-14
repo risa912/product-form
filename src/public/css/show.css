@@ -4,6 +4,15 @@
     font-size: 16px;
 }
 
+.detail-form__inner {
+    display: flex;
+    justify-content: space-between;
+    /* 左右に分ける */
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
 .detail-form__breadcrumb-text {
     text-decoration: none;
     color: #0085FF;
@@ -11,6 +20,7 @@
 
 .detail-form__group--horizontal {
     display: flex;
+    gap: 50px;
     align-items: center;
     margin-top: 40px;
 }
@@ -18,7 +28,6 @@
 /* フォーム */
 .detail-form__group {
     margin-top: 20px;
-    width: 80%;
 }
 
 .detail-form__label {

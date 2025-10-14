@@ -85,7 +85,7 @@
                 </p>
             </div>
         </form> 
-
+    </div>
         <div class="detail-form__btn-inner">
             <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
             <form class="detail-form__save" action="">
@@ -100,7 +100,6 @@
                 </button>
             </form>
         </div>
-    </div>
 </div>
 @endsection
 
