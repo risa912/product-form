@@ -14,9 +14,8 @@ class ProductController extends Controller
     // 一覧表示
     public function index()
     {
-        $products = Product::paginate(6);
-    
-        return view('product', compact('products'));
+    $products = Product::paginate(6);
+    return view('product', compact('products'));
     }
 
     // 検索
@@ -55,7 +54,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         if ($request->has('back')) {
-        return redirect('products.index');
+        return redirect()->route('products.index');
     }
 
         $imagePath = $request->file('image')->store('fruits-img', 'public');
@@ -68,56 +67,73 @@ class ProductController extends Controller
          ]);
         
         if ($request->filled('season')) {  
-        // has() ではなく filled() を使う
+
         $seasonIds = array_map('intval', $request->season);
-        // 0 や存在しない ID を除外
+
         $seasonIds = array_filter($seasonIds, fn($id) => $id > 0);
     
         if (!empty($seasonIds)) {
         $product->seasons()->sync($seasonIds);
         }
 
-        return redirect('products');
+        return redirect()->route('products.index');
     }
     }
 
     // 詳細表示
     public function show($id)
     {
-        // ID で商品を取得。存在しなければ404
+
         $product = Product::with('seasons')->findOrFail($id);
 
         $seasons = Season::all(); 
     
-        // show.blade に $product を渡す
         return view('show', compact('product', 'seasons'));
     }
 
-    public function update(ProductRequest $request, Product $product)
+    public function update(ProductRequest $request, $productId)
     {
+
+        dd('test');
+        $product = Product::findOrFail($productId);
+        $image = $request->file('image');
+        $path = $product->image; 
+
+        if (isset($image)) {
+
+        \Storage::disk('public')->delete($path);
+
+        $path = $image->store('fruits-img', 'public');
+    }
+
         $product->update([
         'name' => $request->name,
         'price' => $request->price,
         'description' => $request->description,
-        // 画像も更新する場合は処理を追加
-        ]);
+        'image' => $path,
+    ]);
 
-        $seasons = Season::all();
-        return redirect('product');
+        if ($request->filled('season')) {
+        $seasonIds = array_map('intval', $request->season);
+        $seasonIds = array_filter($seasonIds, fn($id) => $id > 0);
+        $product->seasons()->sync($seasonIds);
+    }
+
+        return redirect()->route('products.index')
+                    ->with('success', '商品を更新しました！');
     }
 
     public function destroy($productId)
     {
         $product = Product::findOrFail($productId);
 
-        // 画像削除
         if ($product->image) {
         \Storage::disk('public')->delete($product->image);
         }
 
         $product->delete();
 
-        return redirect()->route('product');
+        return redirect()->route('products.index');
     }
 
 }

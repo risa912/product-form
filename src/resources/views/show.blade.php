@@ -10,7 +10,7 @@
         <a class="detail-form__breadcrumb-text" href="{{ route('products.index') }}">商品一覧</a> > {{ $product->name }}
     </div>
     <div class="detail-form__inner">
-        <form class="register" action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+        <form class="detail" action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="detail-form__group detail-form__group--horizontal">
                 <div class="detail-form__group">
@@ -84,22 +84,22 @@
                     @enderror
                 </p>
             </div>
-            <div class="detail-form__btn-inner">
-                <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
-                <form action="{{ route('products.update', $product->id) }}" method="POST"      enctype="multipart/form-data" style="display:inline;">
-                    @csrf
-                    <input class="detail-form__send-btn btn" type="submit" value="変更を保存" name="register">
-                </form>
-                
-                <form action="{{ route('products.destroy', ['productId' => $product->id]) }}"       method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="detail-form__delete-btn">
-                        <img class="detail-form__icon" src="{{ asset('images/trash-icon.png') }}" alt="削除">
-                    </button>
-                </form>
-            </div>
-        </form>    
+        </form> 
+
+        <div class="detail-form__btn-inner">
+            <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
+            <form class="detail-form__save" action="">
+                <button class="detail-form__save-btn btn" type="submit" value="変更を保存" name="register">変更を保存</button> 
+            </form>
+              
+            <form class="detail-form__delete-form__delete" action="{{ route('products.destroy', ['productId' => $product->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="detail-form__delete-btn">
+                    <img class="detail-form__icon" src="{{ asset('images/trash-icon.png') }}" alt="削除">
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
