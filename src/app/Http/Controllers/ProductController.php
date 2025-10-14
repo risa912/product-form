@@ -28,7 +28,7 @@ class ProductController extends Controller
 
         $products = $query->paginate(6);
 
-        return view('products.index', compact('products'));
+        return view('product', compact('products'));
     }
     
     // 検索条件
@@ -100,28 +100,24 @@ class ProductController extends Controller
         'price' => $request->price,
         'description' => $request->description,
         // 画像も更新する場合は処理を追加
-    ]);
+        ]);
 
         $seasons = Season::all();
-        return redirect('products');
+        return redirect('product');
     }
 
     public function destroy($productId)
     {
-    $product = Product::findOrFail($productId);
+        $product = Product::findOrFail($productId);
 
-    // 画像削除
-    if ($product->image) {
+        // 画像削除
+        if ($product->image) {
         \Storage::disk('public')->delete($product->image);
+        }
+
+        $product->delete();
+
+        return redirect()->route('product');
     }
-
-    // 関連シーズンも detach（必要なら）
-    $product->seasons()->detach();
-
-    $product->delete();
-
-    return redirect()->route('products.index');
-    }
-
 
 }
