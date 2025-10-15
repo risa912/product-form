@@ -28,6 +28,25 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
+
+> **権限エラーが出る場合**
+> 
+> ```
+> '.env' を保存できませんでした。EACCES: permission denied
+> ```
+> 下記を実行してください。
+
+```bash
+# ディレクトリとファイルの所有者を自分のユーザーに変更
+sudo chown -R ユーザー名:ユーザー名 ~/coachtech/review-product/product-form/src
+
+# ファイルやディレクトリの書き込み権限を付与
+chmod -R u+rw ~/coachtech/review-product/product-form/src
+
+# 確認
+ls -la ~/coachtech/review-product/product-form/src/.env
+```
+
 5. アプリケーションキーの作成
 ``` bash
 php artisan key:generate
@@ -43,15 +62,30 @@ php artisan migrate
 php artisan db:seed
 ```
 
-8. シンボリックリンクの実行
-``` bash
-php artisan storage:link
+> **Laravel ログ権限エラーが出る場合**
+> 
+> ```
+> The stream or file "/var/www/storage/logs/laravel.log" could not be opened in append mode: Failed to open stream: Permission denied
+> ```
+> …その場合は下記を実行してください。
+
+```bash
+# PHPコンテナに入る
+docker exec -it product-form-php-1 /bin/bash
+
+# storage と bootstrap/cache の所有者を Web サーバー用に変更
+chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+# 書き込み権限を付与
+chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 ```
 
+
+
 ## 使用技術(実行環境)
-- PHP8.3.0
-- Laravel8.83.27
-- MySQL8.0.26
+- PHP8.4.11
+- Laravel8.83.29
+- MySQL 8.0.43
 
 ## ER図
 ![alt](product.png)
