@@ -8,7 +8,7 @@
     <aside class="search-form__inner">
         <form class="search" action="{{ route('products.search') }}"method="get">
             <h2 class="search-form__heading content__heading">
-                @if(request('keyword') && !request('sort'))
+                @if(request()->filled('keyword'))
                     "{{ request('keyword') }}"の商品一覧
                 @else
                     商品一覧
