@@ -2,7 +2,7 @@
 
 ## 環境構築
 **Dockerビルド**
-1. `git clone git@github.com:risa912/review-form.git`
+1. `git clone git@github.com:risa912/product-form.git`
 2. DockerDesktopアプリを立ち上げる
 3. `docker-compose up -d --build`
 
@@ -41,6 +41,11 @@ php artisan migrate
 7. シーディングの実行
 ``` bash
 php artisan db:seed
+```
+
+8. シンボリックリンクの実行
+``` bash
+php artisan storage:link
 ```
 
 ## 使用技術(実行環境)
