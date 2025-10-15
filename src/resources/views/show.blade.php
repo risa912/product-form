@@ -15,13 +15,18 @@
             <div class="detail-form__group detail-form__group--horizontal">
                 <div class="detail-form__group">
                     <div class="detail-form__imageBox">
-                        <img class="detail-form__image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-                        <div id="image-preview" class="register-form__preview"></div>
-                        <label class="detail-form__file-label" for="image"></label>
-                        <input class="detail-form__image-input" type="file" id="image" name="image" accept="image/*">
-                    </div>
+                        @if ($product->image)
+                        <!-- 既存画像をプレビュー -->
+                            <img class="detail-form__image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                        @endif
+
+                    <label class="detail-form__file-label" for="image"></label>
+                    <input class="detail-form__image-input" type="file" name="image" id="image" accept="image/*">
+
+                    <div id="image-preview" class="register-form__preview"></div>
+                </div>
                     <p class="detail-form__error-message">
-                        @error('description')
+                        @error('image')
                             {{ $message }}
                         @enderror
                     </p>
@@ -33,7 +38,7 @@
                         <input class="detail-form__input" type="text" name="name" id="name" value="{{ old('name', $product->name) }}"
                         placeholder="商品名を入力">
                         <p class="detail-form__error-message">
-                            @error('description')
+                            @error('name')
                                 {{ $message }}
                             @enderror
                         </p>
@@ -84,22 +89,21 @@
                     @enderror
                 </p>
             </div>
-        </form> 
-    </div>
-        <div class="detail-form__btn-inner">
-            <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
-            <form class="detail-form__save" action="">
+
+            <div class="detail-form__btn-inner">
+                <a href="{{ route('products.index')}}"class="detail-form__back-btn btn">戻る</a>
                 <button class="detail-form__save-btn btn" type="submit" value="変更を保存" name="register">変更を保存</button> 
-            </form>
-              
+            </div>
+        </form>
+        
+        <div class="detail-form__btn">              
             <form class="detail-form__delete-form__delete" action="{{ route('products.destroy', ['productId' => $product->id]) }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="detail-form__delete-btn">
-                    <img class="detail-form__icon" src="{{ asset('images/trash-icon.png') }}" alt="削除">
-                </button>
+                <button type="submit" class="detail-form__delete-btn"></button>
             </form>
         </div>
+    </div>
 </div>
 @endsection
 

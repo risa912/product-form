@@ -7,9 +7,7 @@
 .detail-form__inner {
     display: flex;
     justify-content: space-between;
-    /* 左右に分ける */
-    align-items: flex-start;
-    gap: 30px;
+    align-items: flex-end;
     width: 100%;
 }
 
@@ -55,6 +53,7 @@
 .detail-form__season-inputs {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .detail-form__imageBox {
@@ -136,7 +135,7 @@
 .detail-form__btn-inner {
     display: flex;
     align-items: center;
-    margin: 32px auto 0;
+    margin-top: 32px;
     justify-content: center;
     gap: 32px;
 }
@@ -150,4 +149,19 @@
 
 .detail-form__back-btn {
     background-color: #E0DFDE;
+    text-align: center;
+}
+
+.detail-form__delete-btn {
+    width: 30px;
+    height: 30px;
+    background-image: url('../images/Vector.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.detail-form__btn {
+    padding-bottom: 7px;
 }
