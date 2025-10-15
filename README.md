@@ -1,4 +1,4 @@
-# FashionablyLate(お問い合わせフォーム)
+# FashionablyLate(もぎたて)
 
 ## 環境構築
 **Dockerビルド**
